@@ -1,0 +1,63 @@
+.data
+	msg1: .asciiz "\nDigite a quantidade de horas trabalhadas: "
+	msg2: .asciiz "\nDigite a quantidade de horas extras trabalhadas: "
+	msg3: .asciiz "\nDigite o valor do desconto: "
+	msg4: .asciiz "\nO salário bruto é de: "
+	msg5: .asciiz "\nO salário líquido é de: "
+	
+.text
+.global main
+main:
+	li $v0, 4
+    	la $a0, msg1
+    	syscall
+
+    	li $v0, 5
+    	syscall
+    	move $t0, $v0
+    	
+    	li $v0, 4
+    	la $a0, msg2
+    	syscall
+    	
+    	li $v0, 5
+    	syscall
+    	move $t1, $v0
+    	
+    	li $v0, 4
+    	la $a0, msg3
+    	syscall
+    	
+    	li $v0, 5
+    	syscall
+    	move $t2, $v0
+    	
+    	li $t3, 10
+    	li $t4, 15
+    	
+    	mul $t5, $t0, $t3
+	mul $t6, $t1, $t4
+
+	add $t7, $t5, $t6
+	sub $t8, $t7, $t2
+	
+	li $v0, 4
+    	la $a0, msg4
+    	syscall
+
+   	li $v0, 1
+    	move $a0, $t7
+    	syscall
+	
+	li $v0, 4
+    	la $a0, msg5
+    	syscall
+
+    	li $v0, 1
+    	move $a0, $t8
+    	syscall
+    	
+    	li $v0, 10
+    	syscall
+    	
+    	

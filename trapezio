@@ -1,0 +1,50 @@
+.data
+	msg1: .asciiz "\nDigite a base maior do trapézio: "
+	msg2: .asciiz "\nDigite a base menor do trapézio: "
+	msg3: .asciiz "\nDigite a altura do trapézio: "
+	msg4: .asciiz "\nA área do trapézio é de: "
+	
+.text
+.global main
+main:
+	li $v0, 4
+    	la $a0, msg1
+    	syscall
+
+    	li $v0, 5
+    	syscall
+    	move $t0, $v0
+    	
+    	li $v0, 4
+    	la $a0, msg2
+    	syscall
+    	
+    	li $v0, 5
+    	syscall
+    	move $t1, $v0
+    	
+    	li $v0, 4
+    	la $a0, msg3
+    	syscall
+    	
+    	li $v0, 5
+    	syscall
+    	move $t2, $v0
+    	
+    	add $t3, $t0, $t1
+    	mul $t4, $t3, $t2
+    	
+    	li $t5, 2
+    	div $t4, $t5
+    	mflo $t6
+    	
+    	li $v0, 4
+    	la $a0, msg4
+    	syscall
+
+    	li $v0, 1
+    	move $a0, $t6
+    	syscall
+    	
+    	li $v0, 10
+    	syscall
